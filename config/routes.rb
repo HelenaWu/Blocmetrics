@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  resources :confirmations
   resources :sessions
   resources :users
   root "users#new"
