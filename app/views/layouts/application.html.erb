@@ -2,25 +2,32 @@
 <html>
 <head>
   <title>Blocmetrics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, :id => "flash_#{name}" %>
-<% end %>
-<div id="user_nav">
-  <% if current_user %>
-    Logged in as <%= current_user.email %>
-    <%= link_to "Log out", sign_out_path %>
-  <% else %>
-    <%= link_to "Log in", sign_in_path %>
-    <%= link_to "Sign up", sign_up_path %>
-  <% end %>
-</div>
+  <div class="container">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <% end %>
 
-<%= yield %>
+    <ul class="nav nav-tabs">
+      <div class="pull-right user-info">
+        <% if current_user %>
+          Logged in as <%= current_user.email %>
+          <%= link_to "Log out", sign_out_path %>
+        <% else %>
+          <%= link_to "Log in", sign_in_path %> | 
+          <%= link_to "Sign up", sign_up_path %>
+        <% end %>
+      </div>
+    </ul>
+    <%= yield %>
+
+  </div>
+
 
 </body>
 </html>

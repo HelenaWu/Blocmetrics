@@ -24,8 +24,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def confirm
-    self.confirm = true
+  def confirmed?
+    self.confirm
   end
 
 end

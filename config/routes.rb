@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
 
-  resources :confirmations
+  # resources :confirmations
   resources :sessions
-  resources :users
+  resources :users   
   root "users#new"
 
   get "sign_up" => "users#new", :as => "sign_up"
   get "sign_in" => "sessions#new", :as => "sign_in"
   get "sign_out" => "sessions#destroy", :as => "sign_out"  
 
+  get 'confirmations/:id' => "confirmations#update", as: "confirmation"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
