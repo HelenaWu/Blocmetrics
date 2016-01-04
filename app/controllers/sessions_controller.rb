@@ -4,9 +4,6 @@ class SessionsController < ApplicationController
 
   def create
     user = User.authenticate(params[:email], params[:password])
-
-    logger.debug(user.inspect)
-
     if user && user.confirmed?
       session[:user_id] = user.id
       redirect_to root_url, :notice => "logged in"

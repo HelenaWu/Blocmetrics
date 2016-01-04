@@ -5,4 +5,9 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail to: @user.email, subject: "Thanks for signing up!"
   end
+
+  def password_reset(user)
+    @user = user
+    mail to: @user.email, subject: "Password Reset from Blocmetrics"
+  end
 end

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-
   # resources :confirmations
   resources :sessions
   resources :users   
+  resources :password_resets
   root "users#new"
 
   get "sign_up" => "users#new", :as => "sign_up"
