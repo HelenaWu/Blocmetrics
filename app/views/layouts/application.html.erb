@@ -9,10 +9,6 @@
 </head>
 <body>
   <div class="container">
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-    <% end %>
-
     <ul class="nav nav-tabs">
       <div class="pull-right user-info">
         <% if current_user %>
@@ -24,6 +20,11 @@
         <% end %>
       </div>
     </ul>
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-info">
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      </div>
+    <% end %>
     <%= yield %>
 
   </div>

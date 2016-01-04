@@ -1,0 +1,24 @@
+<h1>Register a new application</h1>
+
+<%= form_for @app do |f| %>
+ <% if @app.errors.any? %> 
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for msg in @app.errors.full_messages %>
+          <li><%=msg %></li>
+        <% end %>
+      </ul>  
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :name %></br>
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :URL %></br>
+    <%= f.text_field :URL %>
+  </p>
+ 
+  <%= f.submit %>
+<% end %>

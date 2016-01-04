@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resources :sessions
   resources :users   
   resources :password_resets
-  root "users#new"
+  resources :registered_applications
+  root "registered_applications#index"
 
   get "sign_up" => "users#new", :as => "sign_up"
   get "sign_in" => "sessions#new", :as => "sign_in"

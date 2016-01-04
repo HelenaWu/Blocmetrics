@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:email], params[:password])
     if user && user.confirmed?
       session[:user_id] = user.id
-      redirect_to root_url, :notice => "logged in"
+      redirect_to registered_applications_path, :notice => "logged in"
     elsif user && !user.confirmed?
       flash[:alert] = "please check your email to complete sign up process"
       redirect_to sign_in_path
