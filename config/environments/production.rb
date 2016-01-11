@@ -1,5 +1,9 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.action_mailer.default_url_options = {host: 'https://enigmatic-beyond-5054.herokuapp.com/'}
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.force_ssl = true
 
   # Code is not reloaded between requests.
   config.cache_classes = true
