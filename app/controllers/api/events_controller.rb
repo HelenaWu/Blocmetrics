@@ -12,7 +12,9 @@ class Api::EventsController < ApplicationController
   def create
     app = RegisteredApplication.find_by(url: request.env['HTTP_ORIGIN'])
     if app 
-      if app.events.create(event_params)
+      @event = app.events.create(event_params)
+      if @event.persisted?
+        #checking if @event has an id
         render json: @event, status: :created
       else
         render @event.errors, status: :unprocessable_entity
