@@ -1,12 +1,21 @@
 Rails.application.routes.draw do
-  # resources :confirmations
-  resources :sessions
-  resources :users   
-  resources :password_resets
+
+  #expect requests in JSON form
+  namespace :api, defaults: { format: :json } do
+    match '/events', to: 'events#index', via: [:options]
+    resources :events, only: [:create]
+  end
+
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :users, only: [:new, :create]
+  resources :password_resets, param: :token, except: :destroy
   resources :registered_applications
   root "registered_applications#index"
 
+  #:as makes it possible to call sign_up_path in controller
   get "sign_up" => "users#new", :as => "sign_up"
+  # match '/sign_up', to: 'users#new', via: [:get], :as => "sign_up"
+
   get "sign_in" => "sessions#new", :as => "sign_in"
   get "sign_out" => "sessions#destroy", :as => "sign_out"  
 

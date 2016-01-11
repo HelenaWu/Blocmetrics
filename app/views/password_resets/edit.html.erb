@@ -3,7 +3,7 @@
   <% if @user.errors.any? %>
     <div class="error_msg">
       <ul>
-        <% for msg in @user.errors.full_messages %>
+        <% @user.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>

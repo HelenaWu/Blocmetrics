@@ -1,2 +1,12 @@
-<h1>RegisteredApplications#show</h1>
-<p>Find me in app/views/registered_applications/show.html.erb</p>
+<h1>Application Details</h1>
+
+<div>
+
+  <%=@app.name %>
+  <p><%= @app.URL %></p>
+  <%= link_to "edit", edit_registered_application_path(@app) %></br>
+  <%= link_to "delete app", registered_application_path(@app), method: :delete %>
+  <h3>Events logged</h3>
+  <%= pie_chart @events.group(:name).count %>
+  <%#= line_chart @events.group_by_day(:created_at).count %>
+</div>

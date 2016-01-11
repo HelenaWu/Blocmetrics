@@ -1,6 +1,10 @@
 class RegisteredApplicationsController < ApplicationController
   def index
-    @apps = current_user.registered_applications
+    if current_user
+      @apps = current_user.registered_applications
+    else
+      redirect_to sign_in_path
+    end
   end
 
   def new
@@ -18,11 +22,24 @@ class RegisteredApplicationsController < ApplicationController
   end
   
   def show
-
+    set_app
+    @events = @app.events    
   end
 
   def edit
+    set_app
+    if !@app 
+      redirect_to registered_applications_path, warning: "you are not authorized to read"
+    end
+  end
 
+  def update
+    set_app
+    if @app.update_attributes(app_params) 
+      redirect_to registered_applications_path, notice: "successfully updated application details"  
+    else
+      render :edit, error: "something went wrong in updating the application"
+    end
   end
 
   def destroy
@@ -36,7 +53,7 @@ class RegisteredApplicationsController < ApplicationController
 
   private
   def set_app
-    @app = RegisteredApplication.find(params[:id])
+    @app = current_user.registered_applications.find(params[:id])
   end
   def app_params
     params.require(:registered_application).permit(:name, :URL)

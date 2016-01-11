@@ -1,12 +1,9 @@
 <h1>My registered applications</h1>
 <%= link_to "Create new", new_registered_application_path %>
-
 <div>
 <% @apps.each do |a| %>
   <p>
-  <%= a.name %>
-  <%= a.URL %>
-  <%= link_to "delete", registered_application_path(a), method: :delete %>
+  <%= link_to a.name, registered_application_path(a) %>
   </p>
 <% end %>
 </div>
