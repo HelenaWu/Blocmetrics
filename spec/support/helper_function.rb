@@ -5,7 +5,7 @@ def sign_up(email, password, password_confirm)
     within ".new_user" do
       fill_in 'Email', with: email
       fill_in 'Password', with: password
-      fill_in 'Password confirmation', :with => password_confirm
+      fill_in 'Password confirmation', with: password_confirm
     end
     click_button 'Create User'
 end

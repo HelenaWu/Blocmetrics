@@ -5,9 +5,9 @@ feature 'user registration options', js: true do
     sign_up("test@example.com", "helloworld", "helloworld")
     expect(page).to have_content "please check your email to confirm your account"
 
-    # open_email("test@example.com")
-    # current_email.click_link "Complete sign up"
-    # expect(page).to have_content "Thank you for confirming your account!"
+    open_email("test@example.com")
+    current_email.click_link "Complete sign up"
+    expect(page).to have_content "Thank you for confirming your account!"
   end
   scenario 'invalid email' do
     sign_up("test", "helloworld", "helloworld")

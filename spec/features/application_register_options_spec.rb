@@ -29,7 +29,7 @@ feature 'user register application', js: true do
     visit '/'
     sign_in_manual(user)
     expect(page).to have_content "myApp"
-    click_link "myApp"    
+    click_link "myApp"
     expect(page).to have_content "action100%"
   end
 
